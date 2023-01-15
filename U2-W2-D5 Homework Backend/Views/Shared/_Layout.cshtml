@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav under fs-6" style="margin-left: -320px;">
                     <li class="nav-item me-2">
-                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
+                        @Html.ActionLink("Login", "Index", "Home", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
