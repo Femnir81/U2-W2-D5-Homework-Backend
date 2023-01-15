@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container my-5">
+    <div>
+        <p>
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseClienti" aria-expanded="false" aria-controls="collapseClienti">Lista Clienti</button>
+        </p>
+        <div class="collapse" id="collapseClienti">
+            <div class="card card-body">
+                @{Html.RenderAction("PartialViewIndex", "Clienti");}
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCamere" aria-expanded="false" aria-controls="collapseCamere">Lista Camere</button>
+        </p>
+        <div class="collapse" id="collapseCamere">
+            <div class="card card-body">
+                @{Html.RenderAction("PartialViewIndex", "Camere");}
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePensioni" aria-expanded="false" aria-controls="collapsePensioni">Lista Pensioni</button>
+        </p>
+        <div class="collapse" id="collapsePensioni">
+            <div class="card card-body">
+                @{Html.RenderAction("PartialViewIndex", "Pensioni");}
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrenotazioni" aria-expanded="false" aria-controls="collapsePrenotazioni">Lista Prenotazioni</button>
+        </p>
+        <div class="collapse" id="collapsePrenotazioni">
+            <div class="card card-body">
+                @{Html.RenderAction("PartialViewIndex", "Prenotazioni");}
+            </div>
+        </div>
+    </div>
+    <p class="mt-2">Ricerca Prenotazioni tramite Codice Fiscale</p> <input id="InputCodFisc" type="text" class="form-control d-inline" /> <button id="CercaCodFisc" class="btn btn-primary ms-2">Cerca</button>
+    <table class="table mb-4">
+        <tbody>
+            <tr>
+                <th>N° Prenotazione</th>
+                <th>Data Prenotazione</th>
+                <th>Data Inizio Soggiorno</th>
+                <th>Data Fine Soggiorno</th>
+                <th>Cognome</th>
+                <th>Nome</th>
+                <th>Codice Fiscale</th>
+                <th>N° Camera</th>
+                <th>Tipo di Pensione</th>
+            </tr>
+            <tr id="Risultati1"></tr>
+        </tbody>
+    </table>
+
+    <p class="mt-5 d-inline">Prenotazioni Pensione Completa</p> <button id="PensioneButton" class="btn btn-primary ms-2">Trova</button>
+    <table class="table mb-2">
+        <tbody>
+            <tr>
+                <th>N° Prenotazione</th>
+                <th>Data Prenotazione</th>
+                <th>Data Inizio Soggiorno</th>
+                <th>Data Fine Soggiorno</th>
+                <th>Cognome</th>
+                <th>Nome</th>
+                <th>Tipo di Pensione</th>
+            </tr>
+            <tr id="Risultati2"></tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#CercaCodFisc').click(function () {
+                $.ajax({
+                    method: 'GET',
+                    data: { 'codicefiscale': $('#InputCodFisc').val() },
+                    url: 'GetPrenotazioniByCodFisc',
+                    success: function (ListaPrenotazioni) {
+                        $.each(ListaPrenotazioni, function (index, pren) {
+                            $('#Risultati1').append("<td>" + pren.ID + "</td>" +
+                                "<td>" + pren.DataPrenotazione + "</td>" +
+                                "<td>" + pren.DataInizioSoggiorno + "</td>" +
+                                "<td>" + pren.DataFineSoggiorno + "</td>" +
+                                "<td>" + pren.IDCliente.Cognome + "</td>" +
+                                "<td>" + pren.IDCliente.Nome + "</td>" +
+                                "<td>" + pren.IDCliente.Cod_Fisc + "</td>" +
+                                "<td>" + pren.IDCamera.Numero + "</td>" +
+                                "<td>" + pren.IDPensione.Tipologia + "</td>")
+                        })
+                    }
+                })
+            })
+        })
+
+        $(document).ready(function () {
+            $('#PensioneButton').click(function () {
+                $.ajax({
+                    method: 'GET',
+                    url: 'GetPrenotazioniPensCompl',
+                    success: function (ListaPrenotazioni) {
+                        $.each(ListaPrenotazioni, function (index, pren) {
+                            $('#Risultati2').append("<td>" + pren.ID + "</td>" +
+                                "<td>" + pren.DataPrenotazione + "</td>" +
+                                "<td>" + pren.DataInizioSoggiorno + "</td>" +
+                                "<td>" + pren.DataFineSoggiorno + "</td>" +
+                                "<td>" + pren.IDCliente.Cognome + "</td>" +
+                                "<td>" + pren.IDCliente.Nome + "</td>" +                                
+                                "<td>" + pren.IDPensione.Tipologia + "</td>")
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+</div>
+

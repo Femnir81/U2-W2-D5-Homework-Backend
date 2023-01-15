@@ -1,0 +1,73 @@
+﻿@model IEnumerable<U2_W2_D5_Homework_Backend.Models.Prenotazione>
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+<div class="container">
+    <table class="table my-5">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDCamera.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDCliente.Cognome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDCliente.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInizioSoggiorno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFineSoggiorno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Acconto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prezzo)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDCamera.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDCliente.Cognome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDCliente.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInizioSoggiorno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataFineSoggiorno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Acconto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prezzo)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @{Html.RenderAction("PartialViewServiziCheckout", "Ordini");}
+
+    <p class="fw-bold float-end my-2 fs-3">Totale da pagare: <span class="text-danger">@ViewBag.TotaleDaPagare</span> €</p>
+</div>

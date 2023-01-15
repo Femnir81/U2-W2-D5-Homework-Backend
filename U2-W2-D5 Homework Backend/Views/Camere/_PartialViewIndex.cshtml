@@ -1,0 +1,45 @@
+﻿@model IEnumerable<U2_W2_D5_Homework_Backend.Models.Camera>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doppia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disponibilita)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descrizione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doppia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disponibilita)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

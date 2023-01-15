@@ -1,0 +1,58 @@
+﻿@model U2_W2_D5_Homework_Backend.Models.Prenotazione
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Prenotazione</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataPrenotazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataPrenotazione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInizioSoggiorno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInizioSoggiorno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFineSoggiorno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFineSoggiorno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acconto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acconto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezzo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezzo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

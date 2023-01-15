@@ -1,0 +1,36 @@
+﻿@model IEnumerable<U2_W2_D5_Homework_Backend.Models.Ordini>
+
+<table class="table my-5">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDServizi.Descrizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataOrdine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrezzoTotale)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDServizi.Descrizione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataOrdine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrezzoTotale)
+        </td>
+    </tr>
+}
+
+</table>
