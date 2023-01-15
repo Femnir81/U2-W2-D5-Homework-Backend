@@ -20,6 +20,7 @@ namespace U2_W2_D5_Homework_Backend.Models
         public int Quantita { get; set; }
         [Display(Name = "Prezzo")]
         [Required(ErrorMessage = "Il campo è obbligatorio")]
+        [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = false)]
         public double PrezzoTotale { get; set; }
         [Display(Name = "Prenotazione")]
         [Required(ErrorMessage = "Il campo è obbligatorio")]

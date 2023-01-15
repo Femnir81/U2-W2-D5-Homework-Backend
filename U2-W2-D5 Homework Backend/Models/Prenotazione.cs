@@ -28,9 +28,11 @@ namespace U2_W2_D5_Homework_Backend.Models
         public string Anno { get; set; }
         [Display(Name = "Acconto")]
         [Required(ErrorMessage = "Il campo è obbligatorio")]
+        [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = false)]
         public double Acconto { get; set; }
         [Display(Name = "Prezzo")]
         [Required(ErrorMessage = "Il campo è obbligatorio")]
+        [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = false)]
         public double Prezzo { get; set; }
         [Display(Name = "Cliente")]
         [Required(ErrorMessage = "Il campo è obbligatorio")]
@@ -183,6 +185,26 @@ namespace U2_W2_D5_Homework_Backend.Models
             }
         }
 
+        public static void DeletePrenotazione(int id)
+        {
+            SqlConnection con = ConnectionClass.GetConnectionDB();
+            try
+            {
+                con.Open();
+                SqlCommand command = ConnectionClass.GetCommand("Delete from PresentazioniTab where ID = @ID", con);
+                command.Parameters.AddWithValue("@ID", id);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         public static List<Prenotazione> GetPrenotazioneInfoCheckout(int id)
         {
             SqlConnection con = ConnectionClass.GetConnectionDB();
@@ -190,7 +212,7 @@ namespace U2_W2_D5_Homework_Backend.Models
             try
             {
                 con.Open();
-                SqlCommand command = ConnectionClass.GetCommand("SELECT PrenotazioniTab.ID, CamereTab.Numero, ClientiTab.Cognome, ClientiTab.Nome, PrenotazioniTab.DataInizioSoggiorno, PrenotazioniTab.DataFineSoggiorno, PrenotazioniTab.Acconto, PrenotazioniTab.Prezzo FROM CamereTab INNER JOIN ClientiTab ON CamereTab.ID = ClientiTab.ID INNER JOIN PrenotazioniTab ON CamereTab.ID = PrenotazioniTab.IDCamera AND ClientiTab.ID = PrenotazioniTab.IDCliente WHERE PrenotazioniTab.ID = @ID", con);
+                SqlCommand command = ConnectionClass.GetCommand("SELECT PrenotazioniTab.ID, CamereTab.Numero, ClientiTab.Cognome, ClientiTab.Nome, PrenotazioniTab.DataInizioSoggiorno, PrenotazioniTab.DataFineSoggiorno, PrenotazioniTab.Acconto, PrenotazioniTab.Prezzo FROM CamereTab INNER JOIN ClientiTab ON CamereTab.ID = ClientiTab.ID INNER JOIN PrenotazioniTab ON CamereTab.ID = PrenotazioniTab.IDCamera WHERE PrenotazioniTab.ID = @ID", con);
                 command.Parameters.AddWithValue("@ID", id);
 
                 SqlDataReader reader = command.ExecuteReader();

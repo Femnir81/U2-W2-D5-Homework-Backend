@@ -63,26 +63,9 @@ namespace U2_W2_D5_Homework_Backend.Models
             }
         }
 
-        // GET: Prenotazioni/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Prenotazioni/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index", "Gestione");
         }
 
         public ActionResult Checkout(int id) 
