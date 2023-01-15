@@ -21,11 +21,11 @@
                     <li class="nav-item me-2">
                         @Html.ActionLink("Home", "Index", "Home", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
                     </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
                     <li class="nav-item me-2">
                         @Html.ActionLink("Gestione", "Index", "Gestione", null, new { @class = "text-white me-2", style = "text-decoration:none;" })
                     </li>                    
-                    @if (User.Identity.IsAuthenticated)
-                    {
                     <li class="nav-item me-2">
                         @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "text-white me-2", style = "text-decoration:none" })
                     </li>
